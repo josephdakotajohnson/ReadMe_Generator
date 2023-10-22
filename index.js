@@ -39,25 +39,81 @@ const questions = () => {
         {
             type: 'input',
             name: 'features',
-            message: 'What are the features? (Use "When", "Then", and "If", place " - " before each one and a space after each one.)',
+            message: 'What are the features? (Use "When", "Then", and "If", place "," after each one with no space added.)',
         },
         {
             type: 'input',
             name: 'screenshot',
             message: 'What is the name of the screenshot?',
         },
+        {
+            type: 'list',
+            name: 'licenses',
+            message: 'What licenses should be added to the README?',
+            choices: ['MIT', 'BSD2', 'Apache2', 'none'],
+        },
     ])
 };
 
+// let text = "When I do this?,Then I do that!";
+// const myArray = text.split(",");
+
+// function renderFeatures(feature) { // Work on Credits1.
+//     const featureArr = feature.split(",");
+//     var featureSection = ``;
+//     for (var i = 0; i < featureArr.length; i++) {
+//         featureSection += ` - ${featureArr[i]}\n`;
+//     }
+//     return featureSection;
+// }
+
+function renderFeatures(feature) {
+    const featureArr = feature.split(",");
+    var featureSection = ``;
+    for (var i = 0; i < featureArr.length; i++) {
+        featureSection += ` - ${featureArr[i]}\n`;
+    }
+    return featureSection;
+}
+
+function renderBadges(badge) {
+    var badgeSection = ``;
+    for (var i = 0; i < badge.length; i++) {
+        badgeSection += ` - ${badge[i]}\n`;
+    }
+    return badgeSection;
+}
+
+function renderLicenseBadge(license) {
+    if (license === 'none') {
+        return "";
+    }
+    return `\n\n - ![License](https://img.shields.io/badge/License-${license}-blue.svg)`
+}
+
+function renderLicenseLink(license) {
+    if (license === 'none') {
+        return "";
+    }
+    return "- [License](#license)"
+}
+
+function renderLicenseSection(license) {
+    if (license === 'none') {
+        return "";
+    }
+    return "\n\n## License"
+}
+
 // TODO: Create a function to write README file
 // function writeToFile(fileName, data) {
-const generateREADME = ({ deployedApp, gitHub, description, credits1, credits2, badges, features, screenshot }) =>
+const generateREADME = ({ deployedApp, gitHub, description, credits1, credits2, badges, features, screenshot, licenses }) =>
 `# ${deployedApp}
-${description} 
+${description}
 
 ## Description
 
- - ${description}
+ - ${description}${renderLicenseSection(licenses)}${renderLicenseBadge(licenses)}
 
 ## Table of Contents
 
@@ -67,6 +123,7 @@ ${description}
   - [Questions](#questions)
   - [Screenshot](#screenshot)
   - [DeployedApp](#deployedApp)
+  ${renderLicenseLink(licenses)}
 
 ## Credits
 
@@ -76,11 +133,11 @@ ${credits2}
 
 ## Badges
 
-${badges}
+${renderBadges(badges)}
 
 ## Features
 
-${features}
+${renderFeatures(features)}
 
 ## Questions
 
