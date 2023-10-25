@@ -46,11 +46,11 @@ I want to create a README.md generator.
 
 ## Screenshot
 
- - This is a screenshot of the application: ![Application Screenshot](assets/images/Screen_Capture).
+ - This is a screenshot of the application: ![Application Screenshot](assets/images/Screen_Capture.JPG).
 
 ## Video
 
-![Application Video](assets/images/Screen_Video_Test)
+![Application Video](assets/images/Screen_Video_Test.webm)
 
 
 ## DeployedApp
