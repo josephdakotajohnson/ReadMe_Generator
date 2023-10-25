@@ -101,7 +101,7 @@ function renderVideoLink(video) {
     if (video === 'no') {
         return "";
     }
-    return `\n - [Video](#video)`
+    return `\n  - [Video](#video)`
 }
 
 function renderVideoSection(video) {
@@ -112,7 +112,7 @@ function renderVideoSection(video) {
 }
 
 function renderLicenseBadge(license) {
-    if (license === "") {
+    if (license === 'none') {
         return "";
     }
     return `\n\n - ![License](https://img.shields.io/badge/License-${license}-blue.svg)`
@@ -122,7 +122,7 @@ function renderLicenseLink(license) {
     if (license === 'none') {
         return "";
     }
-    return `\n - [License](#license)`
+    return `\n  - [License](#license)`
 }
 
 function renderLicenseSection(license) {
@@ -148,8 +148,8 @@ ${description}
   - [Badges](#badges)
   - [Features](#features)
   - [Questions](#questions)
-  - [Screenshot](#screenshot)
-  - [DeployedApp](#deployedApp)${renderVideoLink(video)}${renderLicenseLink(licenses)}
+  - [Screenshot](#screenshot)${renderVideoLink(video)}
+  - [DeployedApp](#deployedApp)${renderLicenseLink(licenses)}
 
 ## Credits
 

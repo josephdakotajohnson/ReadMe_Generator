@@ -5,8 +5,6 @@ I want to create a README.md generator.
 
  - I want to create a README.md generator.
 
- - ![License](https://img.shields.io/badge/License-none-blue.svg)
-
 ## Table of Contents
 
   - [Credits](#credits)
@@ -14,8 +12,8 @@ I want to create a README.md generator.
   - [Features](#features)
   - [Questions](#questions)
   - [Screenshot](#screenshot)
+  - [Video](#video)
   - [DeployedApp](#deployedApp)
- - [Video](#video)
 
 ## Credits
 
@@ -49,7 +47,7 @@ I want to create a README.md generator.
 
 ## Video
 
- - https://drive.google.com/file/d/156y7y6w7-3kDqMSzpfGrLzaYzlpDXjnL/view
+ - https://drive.google.com/file/d/1IEhxUdwx4gynb9Xa7hn5lpQTQkOADM2x/view
 
 ## DeployedApp
 
