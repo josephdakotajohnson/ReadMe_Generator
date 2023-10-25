@@ -49,7 +49,8 @@ const questions = () => {
         {
             type: 'input',
             name: 'video',
-            message: 'What is the name of the project video? (If there is none, type nothing and press the enter key.)',
+            message: 'Does their need to be a video section?', 
+            choices: ['yes', 'no'],
         },
         {
             type: 'list',
@@ -90,21 +91,21 @@ function renderBadges(badge) {
 }
 
 function renderVideo(video) {
-    if (video === 'none') {
+    if (video === 'no') {
         return "";
     }
-    return `\n\nhttps://user-images.githubusercontent.com/6877923/123006036-64e2e780-d3b7-11eb-922e-018994b32da5.mov`
+    return `\n\n(place video here in GitHub)`
 }
 
 function renderVideoLink(video) {
-    if (video === "") {
+    if (video === 'no') {
         return "";
     }
     return "- [Video](#video)"
 }
 
 function renderVideoSection(video) {
-    if (video === "") {
+    if (video === 'no') {
         return "";
     }
     return "\n\n## Video"
