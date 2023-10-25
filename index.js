@@ -47,7 +47,7 @@ const questions = () => {
             message: 'What is the name of the project screenshot?',
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'video',
             message: 'Does their need to be a video section?', 
             choices: ['yes', 'no'],
@@ -94,14 +94,14 @@ function renderVideo(video) {
     if (video === 'no') {
         return "";
     }
-    return `\n\n(place video here in GitHub)`
+    return `\n\n - (place video here in GitHub)`
 }
 
 function renderVideoLink(video) {
     if (video === 'no') {
         return "";
     }
-    return "- [Video](#video)"
+    return `\n - [Video](#video)`
 }
 
 function renderVideoSection(video) {
@@ -155,9 +155,7 @@ ${description}
 
  - This website was coded by ${credits1}.
 
-${renderCredits2(credits2)}
-
-## Badges
+${renderCredits2(credits2)}## Badges
 
 ${renderBadges(badges)}
 ## Features
