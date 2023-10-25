@@ -28,7 +28,7 @@ const questions = () => {
         {
             type: 'input',
             name: 'credits2',
-            message: 'Who should the README credit?',
+            message: `Who should the README credit? (Don't forget to credit their GitHub account, place ";" after each one with no space added.)`,
         },
         {
             type: 'checkbox',
@@ -39,17 +39,22 @@ const questions = () => {
         {
             type: 'input',
             name: 'features',
-            message: 'What are the features? (Use "When", "Then", and "If", place "," after each one with no space added.)',
+            message: 'What are the features? (Use "When", "Then", and "If", place ";" after each one with no space added.)',
         },
         {
             type: 'input',
             name: 'screenshot',
-            message: 'What is the name of the screenshot?',
+            message: 'What is the name of the project screenshot?',
+        },
+        {
+            type: 'input',
+            name: 'video',
+            message: 'What is the name of the project video? (If there is none, type nothing and press the enter key.)',
         },
         {
             type: 'list',
             name: 'licenses',
-            message: 'What licenses should be added to the README?',
+            message: 'What licenses should be added to the README? (This section will not appear in the README.md if "none" is selected.)',
             choices: ['MIT', 'BSD2', 'Apache2', 'none'],
         },
     ])
@@ -58,17 +63,17 @@ const questions = () => {
 // let text = "When I do this?,Then I do that!";
 // const myArray = text.split(",");
 
-// function renderFeatures(feature) { // Work on Credits1.
-//     const featureArr = feature.split(",");
-//     var featureSection = ``;
-//     for (var i = 0; i < featureArr.length; i++) {
-//         featureSection += ` - ${featureArr[i]}\n`;
-//     }
-//     return featureSection;
-// }
+function renderCredits2(credits2) { // Work on Credits1.
+    const credits2Arr = credits2.split(";");
+    var credits2Section = ``;
+    for (var i = 0; i < credits2Arr.length; i++) {
+        credits2Section += ` - ${credits2Arr[i]}\n\n`;
+    }
+    return credits2Section;
+}
 
 function renderFeatures(feature) {
-    const featureArr = feature.split(",");
+    const featureArr = feature.split(";");
     var featureSection = ``;
     for (var i = 0; i < featureArr.length; i++) {
         featureSection += ` - ${featureArr[i]}\n`;
@@ -84,8 +89,29 @@ function renderBadges(badge) {
     return badgeSection;
 }
 
+function renderVideo(video) {
+    if (video === 'none') {
+        return "";
+    }
+    return `\n\nhttps://user-images.githubusercontent.com/6877923/123006036-64e2e780-d3b7-11eb-922e-018994b32da5.mov`
+}
+
+function renderVideoLink(video) {
+    if (video === "") {
+        return "";
+    }
+    return "- [Video](#video)"
+}
+
+function renderVideoSection(video) {
+    if (video === "") {
+        return "";
+    }
+    return "\n\n## Video"
+}
+
 function renderLicenseBadge(license) {
-    if (license === 'none') {
+    if (license === "") {
         return "";
     }
     return `\n\n - ![License](https://img.shields.io/badge/License-${license}-blue.svg)`
@@ -95,7 +121,7 @@ function renderLicenseLink(license) {
     if (license === 'none') {
         return "";
     }
-    return "- [License](#license)"
+    return `\n - [License](#license)`
 }
 
 function renderLicenseSection(license) {
@@ -107,7 +133,7 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to write README file
 // function writeToFile(fileName, data) {
-const generateREADME = ({ deployedApp, gitHub, description, credits1, credits2, badges, features, screenshot, licenses }) =>
+const generateREADME = ({ deployedApp, gitHub, description, credits1, credits2, badges, features, screenshot, video, licenses }) =>
 `# ${deployedApp}
 ${description}
 
@@ -122,30 +148,27 @@ ${description}
   - [Features](#features)
   - [Questions](#questions)
   - [Screenshot](#screenshot)
-  - [DeployedApp](#deployedApp)
-  ${renderLicenseLink(licenses)}
+  - [DeployedApp](#deployedApp)${renderVideoLink(video)}${renderLicenseLink(licenses)}
 
 ## Credits
 
  - This website was coded by ${credits1}.
 
-${credits2}
+${renderCredits2(credits2)}
 
 ## Badges
 
 ${renderBadges(badges)}
-
 ## Features
 
 ${renderFeatures(features)}
-
 ## Questions
 
  - If you have any questions for me, my GitHub account is ${gitHub}.
 
 ## Screenshot
 
- - This is a screenshot of the application: ![Application Screenshot](assets/images/${screenshot}).
+ - This is a screenshot of the application: ![Application Screenshot](assets/images/${screenshot}).${renderVideoSection(video)}${renderVideo(video)}
 
 ## DeployedApp
 
@@ -162,115 +185,3 @@ function init() {
 
 // Function call to initialize app
 init();
-
-
-
-
-
-
-
-// // TODO: Include packages needed for this application
-// const inquirer = require('inquirer');
-// const fs = require('fs');
-// // TODO: Create an array of questions for user input
-// inquirer
-//     .prompt([
-//     {
-//         type: 'input',
-//         name: 'deployedApp',
-//         message: 'What is the name of the repository (this is case sensitive, example: "ReadMe_Generator")?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'gitHub',
-//         message: `What is the name of your GitHub (type this example: "[SoAndSo's GitHub account](https://github.com/soandso)"?`,
-//     },
-//     {
-//         type: 'input',
-//         name: 'description',
-//         message: 'What is the description (example: "I want to create...")?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'credits1',
-//         message: 'Who coded this website?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'credits2',
-//         message: 'Who should the README credit?',
-//     },
-//     {
-//         type: 'checkbox',
-//         name: 'badges',
-//         message: 'What badges should be added to the README?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'features',
-//         message: 'What are the features? (Use "When", "Then", and "If", place " - " before each one and a space after each one.)',
-//     },
-//     {
-//         type: 'input',
-//         name: 'screenshot',
-//         message: 'What is the name of the screenshot?',
-//     },
-// ])
-//     .then((answers) => {
-//         const readmePageContent = generateHTML(answers);
-
-//         fs.writeFile('README.md', htmlPageContent, (err) =>
-//         err ? console.log(err) : console.log('Successfully created index.html!')
-//         );
-// });
-
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {
-// `# ${deployedApp}
-// ${description} 
-
-// ## Description
-
-//  - ${description}
-
-// ## Table of Contents
-
-//   - [Credits](#credits)
-//   - [Badges](#badges)
-//   - [Features](#features)
-//   - [Questions](#questions)
-//   - [Screenshot](#screenshot)
-//   - [DeployedApp](#deployedApp)
-
-// ## Credits
-
-//  - This website was coded by ${credits1}.
-
-// ${credits2}
-
-// ## Badges
-
-//  - 
-
-// ## Features
-
-// ${features}
-
-// ## Questions
-
-//  - If you have any questions for me, my GitHub account is ${gitHub}.
-
-// ## Screenshot
-
-//  - This is a screenshot of the application: ![Application Screenshot](assets/images/${screenshot}).
-
-// ## DeployedApp
-
-//  - This is a link to the fully deployed application: (https://josephdakotajohnson.github.io/${deployedApp}/).
-// `;}
-
-// // TODO: Create a function to initialize app
-// function init() {}
-
-// // Function call to initialize app
-// init();
