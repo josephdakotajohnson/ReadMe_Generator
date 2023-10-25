@@ -50,7 +50,7 @@ I want to create a README.md generator.
 
 ## Video
 
-C:\Users\josep\bootcamp\challenges\ReadMe_Generator\assets\videos\Screen_Video_Test.webm
+![Screen_Video_Test_v2](https://github.com/josephdakotajohnson/ReadMe_Generator/assets/142257296/b20e2e58-d86c-4e3f-b8a7-448015e36c99)
 
 ## DeployedApp
 
